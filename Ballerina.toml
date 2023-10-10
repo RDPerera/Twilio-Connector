@@ -1,9 +1,10 @@
 [package]
 distribution = "2201.8.0"
 org = "ballerinax"
-name = "twilio"
+name = "twilioresource"
 version = "2.0.0"
 license= ["Apache-2.0"]
 authors = ["Ballerina"]
 keywords = ["Communication/Call & SMS", "Cost/Paid"]
 icon = "icon.png"
+export=["twilioresource"]

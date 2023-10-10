@@ -276,7 +276,7 @@ modules = [
 
 [[package]]
 org = "ballerinax"
-name = "twilio"
+name = "twilioresource"
 version = "2.0.0"
 dependencies = [
 	{org = "ballerina", name = "constraint"},
@@ -284,6 +284,6 @@ dependencies = [
 	{org = "ballerina", name = "url"}
 ]
 modules = [
-	{org = "ballerinax", packageName = "twilio", moduleName = "twilio"}
+	{org = "ballerinax", packageName = "twilioresource", moduleName = "twilioresource"}
 ]
 

@@ -46,7 +46,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts\.json(string? friendlyName = (), Account_enum_status? status = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAccountResponse|error {
+    resource isolated function get Accounts(string? friendlyName = (), Account_enum_status? status = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAccountResponse|error {
         string resourcePath = string `/2010-04-01/Accounts.json`;
         map<anydata> queryParam = {"FriendlyName": friendlyName, "Status": status, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -56,7 +56,7 @@ public isolated client class Client {
     # Create a new Twilio Subaccount from the account making the request
     #
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts\.json(CreateAccountRequest payload) returns ApiV2010Account|error {
+    resource isolated function post Accounts(CreateAccountRequest payload) returns ApiV2010Account|error {
         string resourcePath = string `/2010-04-01/Accounts.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -68,7 +68,7 @@ public isolated client class Client {
     #
     # + sid - The Account Sid that uniquely identifies the account to fetch
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string sidJson]() returns ApiV2010Account|error {
+    resource isolated function get Accounts/[string sidJson]() returns ApiV2010Account|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -81,7 +81,7 @@ public isolated client class Client {
     #
     # + sid - The Account Sid that uniquely identifies the account to update
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string sidJson](UpdateAccountRequest payload) returns ApiV2010Account|error {
+    resource isolated function post Accounts/[string sidJson](UpdateAccountRequest payload) returns ApiV2010Account|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -102,7 +102,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Addresses\.json(string? customerName = (), string? friendlyName = (), string? isoCountry = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAddressResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Addresses(string? customerName = (), string? friendlyName = (), string? isoCountry = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAddressResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Addresses.json`;
         map<anydata> queryParam = {"CustomerName": customerName, "FriendlyName": friendlyName, "IsoCountry": isoCountry, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -112,7 +112,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will be responsible for the new Address resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Addresses\.json(CreateAddressRequest payload) returns ApiV2010AccountAddress|error {
+    resource isolated function post Accounts/[string accountSid]/Addresses(CreateAddressRequest payload) returns ApiV2010AccountAddress|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Addresses.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -124,7 +124,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that is responsible for the Address resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Address resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Addresses/[string sidJson]() returns ApiV2010AccountAddress|error {
+    resource isolated function get Accounts/[string accountSid]/Addresses/[string sidJson]() returns ApiV2010AccountAddress|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -137,7 +137,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that is responsible for the Address resource to update.
     # + sid - The Twilio-provided string that uniquely identifies the Address resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Addresses/[string sidJson](UpdateAddressRequest payload) returns ApiV2010AccountAddress|error {
+    resource isolated function post Accounts/[string accountSid]/Addresses/[string sidJson](UpdateAddressRequest payload) returns ApiV2010AccountAddress|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -153,7 +153,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that is responsible for the Address resource to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Address resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Addresses/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Addresses/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -170,7 +170,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Applications\.json(string? friendlyName = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListApplicationResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Applications(string? friendlyName = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListApplicationResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Applications.json`;
         map<anydata> queryParam = {"FriendlyName": friendlyName, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -181,7 +181,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Applications\.json(CreateApplicationRequest payload) returns ApiV2010AccountApplication|error {
+    resource isolated function post Accounts/[string accountSid]/Applications(CreateApplicationRequest payload) returns ApiV2010AccountApplication|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Applications.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -194,7 +194,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Application resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Application resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Applications/[string sidJson]() returns ApiV2010AccountApplication|error {
+    resource isolated function get Accounts/[string accountSid]/Applications/[string sidJson]() returns ApiV2010AccountApplication|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -208,7 +208,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Application resources to update.
     # + sid - The Twilio-provided string that uniquely identifies the Application resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Applications/[string sidJson](UpdateApplicationRequest payload) returns ApiV2010AccountApplication|error {
+    resource isolated function post Accounts/[string accountSid]/Applications/[string sidJson](UpdateApplicationRequest payload) returns ApiV2010AccountApplication|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -225,7 +225,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Application resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Application resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Applications/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Applications/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -239,7 +239,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the AuthorizedConnectApp resource to fetch.
     # + connectAppSid - The SID of the Connect App to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AuthorizedConnectApps/[string connectappsidJson]() returns ApiV2010AccountAuthorized_connect_app|error {
+    resource isolated function get Accounts/[string accountSid]/AuthorizedConnectApps/[string connectappsidJson]() returns ApiV2010AccountAuthorized_connect_app|error {
         if !connectappsidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -255,7 +255,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AuthorizedConnectApps\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAuthorizedConnectAppResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AuthorizedConnectApps(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAuthorizedConnectAppResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AuthorizedConnectApps.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -268,7 +268,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberCountryResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberCountryResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -279,7 +279,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) requesting the available phone number Country resource.
     # + countryCode - The [ISO-3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the country to fetch available phone number information about.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countrycodeJson]() returns ApiV2010AccountAvailable_phone_number_country|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countrycodeJson]() returns ApiV2010AccountAvailable_phone_number_country|error {
         if !countrycodeJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -313,7 +313,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/Local\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberLocalResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/Local(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberLocalResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/Local.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -345,7 +345,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/MachineToMachine\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberMachineToMachineResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/MachineToMachine(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberMachineToMachineResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/MachineToMachine.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -377,7 +377,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/Mobile\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberMobileResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/Mobile(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberMobileResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/Mobile.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -409,7 +409,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/National\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberNationalResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/National(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberNationalResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/National.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -441,7 +441,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/SharedCost\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberSharedCostResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/SharedCost(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberSharedCostResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/SharedCost.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -473,7 +473,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/TollFree\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberTollFreeResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/TollFree(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberTollFreeResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/TollFree.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -505,7 +505,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/Voip\.json(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberVoipResponse|error {
+    resource isolated function get Accounts/[string accountSid]/AvailablePhoneNumbers/[string countryCode]/Voip(int? areaCode = (), string? contains = (), boolean? smsEnabled = (), boolean? mmsEnabled = (), boolean? voiceEnabled = (), boolean? excludeAllAddressRequired = (), boolean? excludeLocalAddressRequired = (), boolean? excludeForeignAddressRequired = (), boolean? beta = (), string? nearNumber = (), string? nearLatLong = (), int? distance = (), string? inPostalCode = (), string? inRegion = (), string? inRateCenter = (), string? inLata = (), string? inLocality = (), boolean? faxEnabled = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListAvailablePhoneNumberVoipResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/AvailablePhoneNumbers/${getEncodedUri(countryCode)}/Voip.json`;
         map<anydata> queryParam = {"AreaCode": areaCode, "Contains": contains, "SmsEnabled": smsEnabled, "MmsEnabled": mmsEnabled, "VoiceEnabled": voiceEnabled, "ExcludeAllAddressRequired": excludeAllAddressRequired, "ExcludeLocalAddressRequired": excludeLocalAddressRequired, "ExcludeForeignAddressRequired": excludeForeignAddressRequired, "Beta": beta, "NearNumber": nearNumber, "NearLatLong": nearLatLong, "Distance": distance, "InPostalCode": inPostalCode, "InRegion": inRegion, "InRateCenter": inRateCenter, "InLata": inLata, "InLocality": inLocality, "FaxEnabled": faxEnabled, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -516,7 +516,7 @@ public isolated client class Client {
     #
     # + accountSid - The unique SID identifier of the Account.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Balance\.json() returns ApiV2010AccountBalance|error {
+    resource isolated function get Accounts/[string accountSid]/Balance() returns ApiV2010AccountBalance|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Balance.json`;
         ApiV2010AccountBalance response = check self.clientEp->get(resourcePath);
         return response;
@@ -538,7 +538,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls\.json(string? to = (), 
+    resource isolated function get Accounts/[string accountSid]/Calls(string? to = (), 
     string? 'from = (), string? parentCallSid = (), 
     Call_enum_status? status = (), string? startTime = (), string? startTimeLT = (), string? startTimeGT = (),
      string? endTime = (), string? endTimeLT = (), string? endTimeGT = (), int? pageSize = (), int? page = (), 
@@ -556,7 +556,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls\.json(CreateCallRequest payload) returns ApiV2010AccountCall|error {
+    resource isolated function post Accounts/[string accountSid]/Calls(CreateCallRequest payload) returns ApiV2010AccountCall|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -569,7 +569,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Call resource(s) to fetch.
     # + sid - The SID of the Call resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string sidJson]() returns ApiV2010AccountCall|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string sidJson]() returns ApiV2010AccountCall|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -583,7 +583,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Call resource(s) to update.
     # + sid - The Twilio-provided string that uniquely identifies the Call resource to update
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string sidJson](UpdateCallRequest payload) returns ApiV2010AccountCall|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string sidJson](UpdateCallRequest payload) returns ApiV2010AccountCall|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -600,7 +600,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Call resource(s) to delete.
     # + sid - The Twilio-provided Call SID that uniquely identifies the Call resource to delete
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Calls/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Calls/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -617,7 +617,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Events\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListCallEventResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string callSid]/Events(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListCallEventResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Events.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -629,7 +629,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + callSid - The call sid that uniquely identifies the call
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Feedback\.json() returns ApiV2010AccountCallCall_feedback|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string callSid]/Feedback() returns ApiV2010AccountCallCall_feedback|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Feedback.json`;
         ApiV2010AccountCallCall_feedback response = check self.clientEp->get(resourcePath);
         return response;
@@ -639,7 +639,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + callSid - The call sid that uniquely identifies the call
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Feedback\.json(UpdateCallFeedbackRequest payload) returns ApiV2010AccountCallCall_feedback|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Feedback(UpdateCallFeedbackRequest payload) returns ApiV2010AccountCallCall_feedback|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Feedback.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -651,7 +651,7 @@ public isolated client class Client {
     #
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/FeedbackSummary\.json(CreateCallFeedbackSummaryRequest payload) returns ApiV2010AccountCallCall_feedback_summary|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/FeedbackSummary(CreateCallFeedbackSummaryRequest payload) returns ApiV2010AccountCallCall_feedback_summary|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/FeedbackSummary.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -664,7 +664,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + sid - A 34 character string that uniquely identifies this resource.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/FeedbackSummary/[string sidJson]() returns ApiV2010AccountCallCall_feedback_summary|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/FeedbackSummary/[string sidJson]() returns ApiV2010AccountCallCall_feedback_summary|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -678,7 +678,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + sid - A 34 character string that uniquely identifies this resource.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Calls/FeedbackSummary/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Calls/FeedbackSummary/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -692,7 +692,7 @@ public isolated client class Client {
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID of the Call Notification resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Call Notification resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Notifications/[string sidJson]() returns ApiV2010AccountCallCall_notificationInstance|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string callSid]/Notifications/[string sidJson]() returns ApiV2010AccountCallCall_notificationInstance|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -712,7 +712,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Notifications\.json(int? log = (), string? messageDateLT = (), string? messageDateGT = (), string? messageDate = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListCallNotificationResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string callSid]/Notifications(int? log = (), string? messageDateLT = (), string? messageDateGT = (), string? messageDate = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListCallNotificationResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Notifications.json`;
         map<anydata> queryParam = {"Log": log, "MessageDate": messageDate, "MessageDate<": messageDateLT, "MessageDate>": messageDateGT, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -730,7 +730,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Recordings\.json(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListCallRecordingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string callSid]/Recordings(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListCallRecordingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Recordings.json`;
         map<anydata> queryParam = {"DateCreated": dateCreated, "DateCreated<": dateCreatedLT, "DateCreated>": dateCreatedGT, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -742,7 +742,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) to associate the resource with.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Recordings\.json(CreateCallRecordingRequest payload) returns ApiV2010AccountCallCall_recording|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Recordings(CreateCallRecordingRequest payload) returns ApiV2010AccountCallCall_recording|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Recordings.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -756,7 +756,7 @@ public isolated client class Client {
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID of the resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Recording resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Recordings/[string sidJson]() returns ApiV2010AccountCallCall_recording|error {
+    resource isolated function get Accounts/[string accountSid]/Calls/[string callSid]/Recordings/[string sidJson]() returns ApiV2010AccountCallCall_recording|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -771,7 +771,7 @@ public isolated client class Client {
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID of the resource to update.
     # + sid - The Twilio-provided string that uniquely identifies the Recording resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Recordings/[string sidJson](UpdateCallRecordingRequest payload) returns ApiV2010AccountCallCall_recording|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Recordings/[string sidJson](UpdateCallRecordingRequest payload) returns ApiV2010AccountCallCall_recording|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -789,7 +789,7 @@ public isolated client class Client {
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID of the resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Recording resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Recordings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Calls/[string callSid]/Recordings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -803,7 +803,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Conference resource(s) to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Conference resource to fetch
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string sidJson]() returns ApiV2010AccountConference|error {
+    resource isolated function get Accounts/[string accountSid]/Conferences/[string sidJson]() returns ApiV2010AccountConference|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -816,7 +816,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Conference resource(s) to update.
     # + sid - The Twilio-provided string that uniquely identifies the Conference resource to update
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string sidJson](UpdateConferenceRequest payload) returns ApiV2010AccountConference|error {
+    resource isolated function post Accounts/[string accountSid]/Conferences/[string sidJson](UpdateConferenceRequest payload) returns ApiV2010AccountConference|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -843,7 +843,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Conferences\.json(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), string? dateUpdated = (), string? dateUpdatedLT = (), string? dateUpdatedGT = (), string? friendlyName = (), Conference_enum_status? status = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListConferenceResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Conferences(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), string? dateUpdated = (), string? dateUpdatedLT = (), string? dateUpdatedGT = (), string? friendlyName = (), Conference_enum_status? status = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListConferenceResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Conferences.json`;
         map<anydata> queryParam = {"DateCreated": dateCreated, "DateCreated<": dateCreatedLT, "DateCreated>": dateCreatedGT, "DateUpdated": dateUpdated, "DateUpdated<": dateUpdatedLT, "DateUpdated>": dateUpdatedGT, "FriendlyName": friendlyName, "Status": status, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -856,7 +856,7 @@ public isolated client class Client {
     # + conferenceSid - The Conference SID that identifies the conference associated with the recording to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Conference Recording resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings/[string sidJson]() returns ApiV2010AccountConferenceConference_recording|error {
+    resource isolated function get Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings/[string sidJson]() returns ApiV2010AccountConferenceConference_recording|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -871,7 +871,7 @@ public isolated client class Client {
     # + conferenceSid - The Conference SID that identifies the conference associated with the recording to update.
     # + sid - The Twilio-provided string that uniquely identifies the Conference Recording resource to update. Use `Twilio.CURRENT` to reference the current active recording.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings/[string sidJson](UpdateConferenceRecordingRequest payload) returns ApiV2010AccountConferenceConference_recording|error {
+    resource isolated function post Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings/[string sidJson](UpdateConferenceRecordingRequest payload) returns ApiV2010AccountConferenceConference_recording|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -889,7 +889,7 @@ public isolated client class Client {
     # + conferenceSid - The Conference SID that identifies the conference associated with the recording to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Conference Recording resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -909,7 +909,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings\.json(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListConferenceRecordingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Conferences/[string conferenceSid]/Recordings(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListConferenceRecordingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Conferences/${getEncodedUri(conferenceSid)}/Recordings.json`;
         map<anydata> queryParam = {"DateCreated": dateCreated, "DateCreated<": dateCreatedLT, "DateCreated>": dateCreatedGT, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -921,7 +921,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the ConnectApp resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the ConnectApp resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/ConnectApps/[string sidJson]() returns ApiV2010AccountConnect_app|error {
+    resource isolated function get Accounts/[string accountSid]/ConnectApps/[string sidJson]() returns ApiV2010AccountConnect_app|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -935,7 +935,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the ConnectApp resources to update.
     # + sid - The Twilio-provided string that uniquely identifies the ConnectApp resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/ConnectApps/[string sidJson](UpdateConnectAppRequest payload) returns ApiV2010AccountConnect_app|error {
+    resource isolated function post Accounts/[string accountSid]/ConnectApps/[string sidJson](UpdateConnectAppRequest payload) returns ApiV2010AccountConnect_app|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -952,7 +952,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the ConnectApp resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the ConnectApp resource to fetch.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/ConnectApps/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/ConnectApps/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -968,7 +968,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/ConnectApps\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListConnectAppResponse|error {
+    resource isolated function get Accounts/[string accountSid]/ConnectApps(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListConnectAppResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/ConnectApps.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -982,7 +982,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Addresses/[string addressSid]/DependentPhoneNumbers\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListDependentPhoneNumberResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Addresses/[string addressSid]/DependentPhoneNumbers(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListDependentPhoneNumberResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Addresses/${getEncodedUri(addressSid)}/DependentPhoneNumbers.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -994,7 +994,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the IncomingPhoneNumber resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the IncomingPhoneNumber resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string sidJson]() returns Api_v2010_account_incoming_phone_number|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/[string sidJson]() returns Api_v2010_account_incoming_phone_number|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1008,7 +1008,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the IncomingPhoneNumber resource to update.  For more information, see [Exchanging Numbers Between Subaccounts](https://www.twilio.com/docs/iam/api/subaccounts#exchanging-numbers).
     # + sid - The Twilio-provided string that uniquely identifies the IncomingPhoneNumber resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string sidJson](UpdateIncomingPhoneNumberRequest payload) returns Api_v2010_account_incoming_phone_number|error {
+    resource isolated function post Accounts/[string accountSid]/IncomingPhoneNumbers/[string sidJson](UpdateIncomingPhoneNumberRequest payload) returns Api_v2010_account_incoming_phone_number|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1025,7 +1025,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the IncomingPhoneNumber resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the IncomingPhoneNumber resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/IncomingPhoneNumbers/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1045,7 +1045,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers\.json(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberResponse|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers.json`;
         map<anydata> queryParam = {"Beta": beta, "FriendlyName": friendlyName, "PhoneNumber": phoneNumber, "Origin": origin, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1056,7 +1056,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers\.json(CreateIncomingPhoneNumberRequest payload) returns Api_v2010_account_incoming_phone_number|error {
+    resource isolated function post Accounts/[string accountSid]/IncomingPhoneNumbers(CreateIncomingPhoneNumberRequest payload) returns Api_v2010_account_incoming_phone_number|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1070,7 +1070,7 @@ public isolated client class Client {
     # + resourceSid - The SID of the Phone Number to which the Add-on is assigned.
     # + sid - The Twilio-provided string that uniquely identifies the resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string sidJson]() returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_assigned_add_on|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string sidJson]() returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_assigned_add_on|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1085,7 +1085,7 @@ public isolated client class Client {
     # + resourceSid - The SID of the Phone Number to which the Add-on is assigned.
     # + sid - The Twilio-provided string that uniquely identifies the resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1102,7 +1102,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberAssignedAddOnResponse|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberAssignedAddOnResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/${getEncodedUri(resourceSid)}/AssignedAddOns.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1114,7 +1114,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + resourceSid - The SID of the Phone Number to assign the Add-on.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns\.json(CreateIncomingPhoneNumberAssignedAddOnRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_assigned_add_on|error {
+    resource isolated function post Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns(CreateIncomingPhoneNumberAssignedAddOnRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_assigned_add_on|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/${getEncodedUri(resourceSid)}/AssignedAddOns.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1129,7 +1129,7 @@ public isolated client class Client {
     # + assignedAddOnSid - The SID that uniquely identifies the assigned Add-on installation.
     # + sid - The Twilio-provided string that uniquely identifies the resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string assignedAddOnSid]/Extensions/[string sidJson]() returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_assigned_add_onIncoming_phone_number_assigned_add_on_extension|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string assignedAddOnSid]/Extensions/[string sidJson]() returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_assigned_add_onIncoming_phone_number_assigned_add_on_extension|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1147,7 +1147,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string assignedAddOnSid]/Extensions\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberAssignedAddOnExtensionResponse|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/[string resourceSid]/AssignedAddOns/[string assignedAddOnSid]/Extensions(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberAssignedAddOnExtensionResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/${getEncodedUri(resourceSid)}/AssignedAddOns/${getEncodedUri(assignedAddOnSid)}/Extensions.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1164,7 +1164,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/Local\.json(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberLocalResponse|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/Local(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberLocalResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/Local.json`;
         map<anydata> queryParam = {"Beta": beta, "FriendlyName": friendlyName, "PhoneNumber": phoneNumber, "Origin": origin, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1174,7 +1174,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/Local\.json(CreateIncomingPhoneNumberLocalRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_local|error {
+    resource isolated function post Accounts/[string accountSid]/IncomingPhoneNumbers/Local(CreateIncomingPhoneNumberLocalRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_local|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/Local.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1192,7 +1192,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/Mobile\.json(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberMobileResponse|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/Mobile(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberMobileResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/Mobile.json`;
         map<anydata> queryParam = {"Beta": beta, "FriendlyName": friendlyName, "PhoneNumber": phoneNumber, "Origin": origin, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1202,7 +1202,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/Mobile\.json(CreateIncomingPhoneNumberMobileRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_mobile|error {
+    resource isolated function post Accounts/[string accountSid]/IncomingPhoneNumbers/Mobile(CreateIncomingPhoneNumberMobileRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_mobile|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/Mobile.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1220,7 +1220,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/TollFree\.json(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberTollFreeResponse|error {
+    resource isolated function get Accounts/[string accountSid]/IncomingPhoneNumbers/TollFree(boolean? beta = (), string? friendlyName = (), string? phoneNumber = (), string? origin = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListIncomingPhoneNumberTollFreeResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/TollFree.json`;
         map<anydata> queryParam = {"Beta": beta, "FriendlyName": friendlyName, "PhoneNumber": phoneNumber, "Origin": origin, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1230,7 +1230,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/IncomingPhoneNumbers/TollFree\.json(CreateIncomingPhoneNumberTollFreeRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_toll_free|error {
+    resource isolated function post Accounts/[string accountSid]/IncomingPhoneNumbers/TollFree(CreateIncomingPhoneNumberTollFreeRequest payload) returns Api_v2010_account_incoming_phone_numberIncoming_phone_number_toll_free|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/IncomingPhoneNumbers/TollFree.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1242,7 +1242,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Key resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Key resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Keys/[string sidJson]() returns ApiV2010AccountKey|error {
+    resource isolated function get Accounts/[string accountSid]/Keys/[string sidJson]() returns ApiV2010AccountKey|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1255,7 +1255,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Key resources to update.
     # + sid - The Twilio-provided string that uniquely identifies the Key resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Keys/[string sidJson](UpdateKeyRequest payload) returns ApiV2010AccountKey|error {
+    resource isolated function post Accounts/[string accountSid]/Keys/[string sidJson](UpdateKeyRequest payload) returns ApiV2010AccountKey|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1271,7 +1271,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Key resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Key resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Keys/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Keys/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1286,7 +1286,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Keys\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListKeyResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Keys(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListKeyResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Keys.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1296,7 +1296,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will be responsible for the new Key resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Keys\.json(CreateNewKeyRequest payload) returns ApiV2010AccountNew_key|error {
+    resource isolated function post Accounts/[string accountSid]/Keys(CreateNewKeyRequest payload) returns ApiV2010AccountNew_key|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Keys.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1310,7 +1310,7 @@ public isolated client class Client {
     # + messageSid - The SID of the Message resource that is associated with the Media resource.
     # + sid - The Twilio-provided string that uniquely identifies the Media resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Messages/[string messageSid]/Media/[string sidJson]() returns ApiV2010AccountMessageMedia|error {
+    resource isolated function get Accounts/[string accountSid]/Messages/[string messageSid]/Media/[string sidJson]() returns ApiV2010AccountMessageMedia|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1325,7 +1325,7 @@ public isolated client class Client {
     # + messageSid - The SID of the Message resource that is associated with the Media resource.
     # + sid - The unique identifier of the to-be-deleted Media resource.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Messages/[string messageSid]/Media/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Messages/[string messageSid]/Media/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1345,7 +1345,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Messages/[string messageSid]/Media\.json(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListMediaResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Messages/[string messageSid]/Media(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListMediaResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Messages/${getEncodedUri(messageSid)}/Media.json`;
         map<anydata> queryParam = {"DateCreated": dateCreated, "DateCreated<": dateCreatedLT, "DateCreated>": dateCreatedGT, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1358,7 +1358,7 @@ public isolated client class Client {
     # + queueSid - The SID of the Queue in which to find the members to fetch.
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID of the resource(s) to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Queues/[string queueSid]/Members/[string callsidJson]() returns ApiV2010AccountQueueMember|error {
+    resource isolated function get Accounts/[string accountSid]/Queues/[string queueSid]/Members/[string callsidJson]() returns ApiV2010AccountQueueMember|error {
         if !callsidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1373,7 +1373,7 @@ public isolated client class Client {
     # + queueSid - The SID of the Queue in which to find the members to update.
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID of the resource(s) to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Queues/[string queueSid]/Members/[string callsidJson](UpdateMemberRequest payload) returns ApiV2010AccountQueueMember|error {
+    resource isolated function post Accounts/[string accountSid]/Queues/[string queueSid]/Members/[string callsidJson](UpdateMemberRequest payload) returns ApiV2010AccountQueueMember|error {
         if !callsidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1393,7 +1393,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Queues/[string queueSid]/Members\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListMemberResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Queues/[string queueSid]/Members(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListMemberResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Queues/${getEncodedUri(queueSid)}/Members.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1412,7 +1412,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Messages\.json(string? to = (), string? 'from = (), string? dateSent = (), string? dateSentLT = (), string? dateSentGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListMessageResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Messages(string? to = (), string? 'from = (), string? dateSent = (), string? dateSentLT = (), string? dateSentGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListMessageResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Messages.json`;
         map<anydata> queryParam = {"To": to, "From": 'from, "DateSent": dateSent, "DateSent<": dateSentLT, "DateSent>": dateSentGT, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1423,7 +1423,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) creating the Message resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Messages\.json(CreateMessageRequest payload) returns ApiV2010AccountMessage|error {
+    resource isolated function post Accounts/[string accountSid]/Messages(CreateMessageRequest payload) returns ApiV2010AccountMessage|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Messages.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1436,7 +1436,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) associated with the Message resource
     # + sid - The SID of the Message resource to be fetched
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Messages/[string sidJson]() returns ApiV2010AccountMessage|error {
+    resource isolated function get Accounts/[string accountSid]/Messages/[string sidJson]() returns ApiV2010AccountMessage|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1450,7 +1450,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Message resources to update.
     # + sid - The SID of the Message resource to be updated
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Messages/[string sidJson](UpdateMessageRequest payload) returns ApiV2010AccountMessage|error {
+    resource isolated function post Accounts/[string accountSid]/Messages/[string sidJson](UpdateMessageRequest payload) returns ApiV2010AccountMessage|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1467,7 +1467,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) associated with the Message resource
     # + sid - The SID of the Message resource you wish to delete
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Messages/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Messages/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1481,7 +1481,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) associated with the Message resource for which to create MessageFeedback.
     # + messageSid - The SID of the Message resource for which to create MessageFeedback.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Messages/[string messageSid]/Feedback\.json(CreateMessageFeedbackRequest payload) returns ApiV2010AccountMessageMessage_feedback|error {
+    resource isolated function post Accounts/[string accountSid]/Messages/[string messageSid]/Feedback(CreateMessageFeedbackRequest payload) returns ApiV2010AccountMessageMessage_feedback|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Messages/${getEncodedUri(messageSid)}/Feedback.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1494,7 +1494,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SigningKeys\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSigningKeyResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SigningKeys(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSigningKeyResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SigningKeys.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1505,7 +1505,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will be responsible for the new Key resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SigningKeys\.json(CreateNewSigningKeyRequest payload) returns ApiV2010AccountNew_signing_key|error {
+    resource isolated function post Accounts/[string accountSid]/SigningKeys(CreateNewSigningKeyRequest payload) returns ApiV2010AccountNew_signing_key|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SigningKeys.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1518,7 +1518,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Notification resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Notification resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Notifications/[string sidJson]() returns ApiV2010AccountNotificationInstance|error {
+    resource isolated function get Accounts/[string accountSid]/Notifications/[string sidJson]() returns ApiV2010AccountNotificationInstance|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1538,7 +1538,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Notifications\.json(int? log = (), string? messageDate = (), string? messageDateLT = (), string? messageDateGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListNotificationResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Notifications(int? log = (), string? messageDate = (), string? messageDateLT = (), string? messageDateGT = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListNotificationResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Notifications.json`;
         map<anydata> queryParam = {"Log": log, "MessageDate": messageDate, "MessageDate<": messageDateLT, "MessageDate>": messageDateGT, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1550,7 +1550,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the OutgoingCallerId resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the OutgoingCallerId resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/OutgoingCallerIds/[string sidJson]() returns ApiV2010AccountOutgoing_caller_id|error {
+    resource isolated function get Accounts/[string accountSid]/OutgoingCallerIds/[string sidJson]() returns ApiV2010AccountOutgoing_caller_id|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1564,7 +1564,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the OutgoingCallerId resources to update.
     # + sid - The Twilio-provided string that uniquely identifies the OutgoingCallerId resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/OutgoingCallerIds/[string sidJson](UpdateOutgoingCallerIdRequest payload) returns ApiV2010AccountOutgoing_caller_id|error {
+    resource isolated function post Accounts/[string accountSid]/OutgoingCallerIds/[string sidJson](UpdateOutgoingCallerIdRequest payload) returns ApiV2010AccountOutgoing_caller_id|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1581,7 +1581,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the OutgoingCallerId resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the OutgoingCallerId resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/OutgoingCallerIds/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/OutgoingCallerIds/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1599,7 +1599,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/OutgoingCallerIds\.json(string? phoneNumber = (), string? friendlyName = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListOutgoingCallerIdResponse|error {
+    resource isolated function get Accounts/[string accountSid]/OutgoingCallerIds(string? phoneNumber = (), string? friendlyName = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListOutgoingCallerIdResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/OutgoingCallerIds.json`;
         map<anydata> queryParam = {"PhoneNumber": phoneNumber, "FriendlyName": friendlyName, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1609,7 +1609,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for the new caller ID resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/OutgoingCallerIds\.json(CreateValidationRequestRequest payload) returns ApiV2010AccountValidation_request|error {
+    resource isolated function post Accounts/[string accountSid]/OutgoingCallerIds(CreateValidationRequestRequest payload) returns ApiV2010AccountValidation_request|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/OutgoingCallerIds.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1623,7 +1623,7 @@ public isolated client class Client {
     # + conferenceSid - The SID of the conference with the participant to fetch.
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID or label of the participant to fetch. Non URL safe characters in a label must be percent encoded, for example, a space character is represented as %20.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants/[string callsidJson]() returns ApiV2010AccountConferenceParticipant|error {
+    resource isolated function get Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants/[string callsidJson]() returns ApiV2010AccountConferenceParticipant|error {
         if !callsidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1638,7 +1638,7 @@ public isolated client class Client {
     # + conferenceSid - The SID of the conference with the participant to update.
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID or label of the participant to update. Non URL safe characters in a label must be percent encoded, for example, a space character is represented as %20.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants/[string callsidJson](UpdateParticipantRequest payload) returns ApiV2010AccountConferenceParticipant|error {
+    resource isolated function post Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants/[string callsidJson](UpdateParticipantRequest payload) returns ApiV2010AccountConferenceParticipant|error {
         if !callsidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1656,7 +1656,7 @@ public isolated client class Client {
     # + conferenceSid - The SID of the conference with the participants to delete.
     # + callSid - The [Call](https://www.twilio.com/docs/voice/api/call-resource) SID or label of the participant to delete. Non URL safe characters in a label must be percent encoded, for example, a space character is represented as %20.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants/[string callsidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants/[string callsidJson]() returns http:Response|error {
         if !callsidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1676,7 +1676,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants\.json(boolean? muted = (), boolean? hold = (), boolean? coaching = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListParticipantResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants(boolean? muted = (), boolean? hold = (), boolean? coaching = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListParticipantResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Conferences/${getEncodedUri(conferenceSid)}/Participants.json`;
         map<anydata> queryParam = {"Muted": muted, "Hold": hold, "Coaching": coaching, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1687,7 +1687,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + conferenceSid - The SID of the participant's conference.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants\.json(CreateParticipantRequest payload) returns ApiV2010AccountConferenceParticipant|error {
+    resource isolated function post Accounts/[string accountSid]/Conferences/[string conferenceSid]/Participants(CreateParticipantRequest payload) returns ApiV2010AccountConferenceParticipant|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Conferences/${getEncodedUri(conferenceSid)}/Participants.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1700,7 +1700,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + callSid - The SID of the call that will create the resource. Call leg associated with this sid is expected to provide payment information thru DTMF.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Payments\.json(CreatePaymentsRequest payload) returns ApiV2010AccountCallPayments|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Payments(CreatePaymentsRequest payload) returns ApiV2010AccountCallPayments|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Payments.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1714,7 +1714,7 @@ public isolated client class Client {
     # + callSid - The SID of the call that will update the resource. This should be the same call sid that was used to create payments resource.
     # + sid - The SID of Payments session that needs to be updated.
     # + return - Accepted 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Payments/[string sidJson](UpdatePaymentsRequest payload) returns ApiV2010AccountCallPayments|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Payments/[string sidJson](UpdatePaymentsRequest payload) returns ApiV2010AccountCallPayments|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1731,7 +1731,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Queue resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Queue resource to fetch
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Queues/[string sidJson]() returns ApiV2010AccountQueue|error {
+    resource isolated function get Accounts/[string accountSid]/Queues/[string sidJson]() returns ApiV2010AccountQueue|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1745,7 +1745,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Queue resource to update.
     # + sid - The Twilio-provided string that uniquely identifies the Queue resource to update
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Queues/[string sidJson](UpdateQueueRequest payload) returns ApiV2010AccountQueue|error {
+    resource isolated function post Accounts/[string accountSid]/Queues/[string sidJson](UpdateQueueRequest payload) returns ApiV2010AccountQueue|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1762,7 +1762,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Queue resource to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Queue resource to delete
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Queues/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Queues/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1778,7 +1778,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Queues\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListQueueResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Queues(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListQueueResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Queues.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1789,7 +1789,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Queues\.json(CreateQueueRequest payload) returns ApiV2010AccountQueue|error {
+    resource isolated function post Accounts/[string accountSid]/Queues(CreateQueueRequest payload) returns ApiV2010AccountQueue|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Queues.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -1803,7 +1803,7 @@ public isolated client class Client {
     # + sid - The Twilio-provided string that uniquely identifies the Recording resource to fetch.
     # + includeSoftDeleted - A boolean parameter indicating whether to retrieve soft deleted recordings or not. Recordings metadata are kept after deletion for a retention period of 40 days.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string sidJson](boolean? includeSoftDeleted = ()) returns ApiV2010AccountRecording|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string sidJson](boolean? includeSoftDeleted = ()) returns ApiV2010AccountRecording|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1819,7 +1819,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Recording resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Recording resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Recordings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1841,7 +1841,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings\.json(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), string? callSid = (), string? conferenceSid = (), boolean? includeSoftDeleted = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings(string? dateCreated = (), string? dateCreatedLT = (), string? dateCreatedGT = (), string? callSid = (), string? conferenceSid = (), boolean? includeSoftDeleted = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Recordings.json`;
         map<anydata> queryParam = {"DateCreated": dateCreated, "DateCreated<": dateCreatedLT, "DateCreated>": dateCreatedGT, "CallSid": callSid, "ConferenceSid": conferenceSid, "IncludeSoftDeleted": includeSoftDeleted, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1854,7 +1854,7 @@ public isolated client class Client {
     # + referenceSid - The SID of the recording to which the result to fetch belongs.
     # + sid - The Twilio-provided string that uniquely identifies the Recording AddOnResult resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string sidJson]() returns ApiV2010AccountRecordingRecording_add_on_result|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string sidJson]() returns ApiV2010AccountRecordingRecording_add_on_result|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1869,7 +1869,7 @@ public isolated client class Client {
     # + referenceSid - The SID of the recording to which the result to delete belongs.
     # + sid - The Twilio-provided string that uniquely identifies the Recording AddOnResult resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1886,7 +1886,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingAddOnResultResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingAddOnResultResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Recordings/${getEncodedUri(referenceSid)}/AddOnResults.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1900,7 +1900,7 @@ public isolated client class Client {
     # + addOnResultSid - The SID of the AddOnResult to which the payload to fetch belongs.
     # + sid - The Twilio-provided string that uniquely identifies the Recording AddOnResult Payload resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string addOnResultSid]/Payloads/[string sidJson]() returns ApiV2010AccountRecordingRecording_add_on_resultRecording_add_on_result_payload|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string addOnResultSid]/Payloads/[string sidJson]() returns ApiV2010AccountRecordingRecording_add_on_resultRecording_add_on_result_payload|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1916,7 +1916,7 @@ public isolated client class Client {
     # + addOnResultSid - The SID of the AddOnResult to which the payloads to delete belongs.
     # + sid - The Twilio-provided string that uniquely identifies the Recording AddOnResult Payload resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string addOnResultSid]/Payloads/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string addOnResultSid]/Payloads/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1934,7 +1934,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string addOnResultSid]/Payloads\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingAddOnResultPayloadResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string referenceSid]/AddOnResults/[string addOnResultSid]/Payloads(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingAddOnResultPayloadResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Recordings/${getEncodedUri(referenceSid)}/AddOnResults/${getEncodedUri(addOnResultSid)}/Payloads.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1946,7 +1946,7 @@ public isolated client class Client {
     # + recordingSid - The SID of the [Recording](https://www.twilio.com/docs/voice/api/recording) that created the transcription to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Transcription resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string recordingSid]/Transcriptions/[string sidJson]() returns ApiV2010AccountRecordingRecording_transcription|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string recordingSid]/Transcriptions/[string sidJson]() returns ApiV2010AccountRecordingRecording_transcription|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1960,7 +1960,7 @@ public isolated client class Client {
     # + recordingSid - The SID of the [Recording](https://www.twilio.com/docs/voice/api/recording) that created the transcription to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Transcription resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string recordingSid]/Transcriptions/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Recordings/[string recordingSid]/Transcriptions/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -1976,7 +1976,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Recordings/[string recordingSid]/Transcriptions\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingTranscriptionResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Recordings/[string recordingSid]/Transcriptions(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListRecordingTranscriptionResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Recordings/${getEncodedUri(recordingSid)}/Transcriptions.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1987,7 +1987,7 @@ public isolated client class Client {
     #
     # + phoneNumber - The phone number to be fetched from SafeList. Phone numbers must be in [E.164 format](https://www.twilio.com/docs/glossary/what-e164).
     # + return - OK 
-    resource isolated function get '2010\-04\-01/SafeList/Numbers\.json(string? phoneNumber = ()) returns ApiV2010Safelist|error {
+    resource isolated function get SafeList/Numbers(string? phoneNumber = ()) returns ApiV2010Safelist|error {
         string resourcePath = string `/2010-04-01/SafeList/Numbers.json`;
         map<anydata> queryParam = {"PhoneNumber": phoneNumber};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -1997,7 +1997,7 @@ public isolated client class Client {
     # Add a new phone number to SafeList.
     #
     # + return - Created 
-    resource isolated function post '2010\-04\-01/SafeList/Numbers\.json(CreateSafelistRequest payload) returns ApiV2010Safelist|error {
+    resource isolated function post SafeList/Numbers(CreateSafelistRequest payload) returns ApiV2010Safelist|error {
         string resourcePath = string `/2010-04-01/SafeList/Numbers.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2009,7 +2009,7 @@ public isolated client class Client {
     #
     # + phoneNumber - The phone number to be removed from SafeList. Phone numbers must be in [E.164 format](https://www.twilio.com/docs/glossary/what-e164).
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/SafeList/Numbers\.json(string? phoneNumber = ()) returns http:Response|error {
+    resource isolated function delete SafeList/Numbers(string? phoneNumber = ()) returns http:Response|error {
         string resourcePath = string `/2010-04-01/SafeList/Numbers.json`;
         map<anydata> queryParam = {"PhoneNumber": phoneNumber};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2021,7 +2021,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the ShortCode resource(s) to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the ShortCode resource to fetch
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SMS/ShortCodes/[string sidJson]() returns ApiV2010AccountShort_code|error {
+    resource isolated function get Accounts/[string accountSid]/SMS/ShortCodes/[string sidJson]() returns ApiV2010AccountShort_code|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2035,7 +2035,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the ShortCode resource(s) to update.
     # + sid - The Twilio-provided string that uniquely identifies the ShortCode resource to update
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SMS/ShortCodes/[string sidJson](UpdateShortCodeRequest payload) returns ApiV2010AccountShort_code|error {
+    resource isolated function post Accounts/[string accountSid]/SMS/ShortCodes/[string sidJson](UpdateShortCodeRequest payload) returns ApiV2010AccountShort_code|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2056,7 +2056,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SMS/ShortCodes\.json(string? friendlyName = (), string? shortCode = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListShortCodeResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SMS/ShortCodes(string? friendlyName = (), string? shortCode = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListShortCodeResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SMS/ShortCodes.json`;
         map<anydata> queryParam = {"FriendlyName": friendlyName, "ShortCode": shortCode, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2065,7 +2065,7 @@ public isolated client class Client {
     }
     #
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SigningKeys/[string sidJson]() returns ApiV2010AccountSigning_key|error {
+    resource isolated function get Accounts/[string accountSid]/SigningKeys/[string sidJson]() returns ApiV2010AccountSigning_key|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2076,7 +2076,7 @@ public isolated client class Client {
     }
     #
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SigningKeys/[string sidJson](UpdateSigningKeyRequest payload) returns ApiV2010AccountSigning_key|error {
+    resource isolated function post Accounts/[string accountSid]/SigningKeys/[string sidJson](UpdateSigningKeyRequest payload) returns ApiV2010AccountSigning_key|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2090,7 +2090,7 @@ public isolated client class Client {
     }
     #
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SigningKeys/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SigningKeys/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2107,7 +2107,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipAuthCallsCredentialListMappingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipAuthCallsCredentialListMappingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/Auth/Calls/CredentialListMappings.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2119,7 +2119,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + domainSid - The SID of the SIP domain that will contain the new resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings\.json(CreateSipAuthCallsCredentialListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_credential_list_mapping|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings(CreateSipAuthCallsCredentialListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_credential_list_mapping|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/Auth/Calls/CredentialListMappings.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2133,7 +2133,7 @@ public isolated client class Client {
     # + domainSid - The SID of the SIP domain that contains the resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the CredentialListMapping resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_credential_list_mapping|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_credential_list_mapping|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2148,7 +2148,7 @@ public isolated client class Client {
     # + domainSid - The SID of the SIP domain that contains the resource to delete.
     # + sid - The Twilio-provided string that uniquely identifies the CredentialListMapping resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/CredentialListMappings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2165,7 +2165,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipAuthCallsIpAccessControlListMappingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipAuthCallsIpAccessControlListMappingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/Auth/Calls/IpAccessControlListMappings.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2177,7 +2177,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + domainSid - The SID of the SIP domain that will contain the new resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings\.json(CreateSipAuthCallsIpAccessControlListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_ip_access_control_list_mapping|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings(CreateSipAuthCallsIpAccessControlListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_ip_access_control_list_mapping|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/Auth/Calls/IpAccessControlListMappings.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2191,7 +2191,7 @@ public isolated client class Client {
     # + domainSid - The SID of the SIP domain that contains the resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the IpAccessControlListMapping resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_ip_access_control_list_mapping|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_authSip_auth_callsSip_auth_calls_ip_access_control_list_mapping|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2206,7 +2206,7 @@ public isolated client class Client {
     # + domainSid - The SID of the SIP domain that contains the resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the IpAccessControlListMapping resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Calls/IpAccessControlListMappings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2223,7 +2223,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipAuthRegistrationsCredentialListMappingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipAuthRegistrationsCredentialListMappingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/Auth/Registrations/CredentialListMappings.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2235,7 +2235,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + domainSid - The SID of the SIP domain that will contain the new resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings\.json(CreateSipAuthRegistrationsCredentialListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_authSip_auth_registrationsSip_auth_registrations_credential_list_mapping|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings(CreateSipAuthRegistrationsCredentialListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_authSip_auth_registrationsSip_auth_registrations_credential_list_mapping|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/Auth/Registrations/CredentialListMappings.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2249,7 +2249,7 @@ public isolated client class Client {
     # + domainSid - The SID of the SIP domain that contains the resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the CredentialListMapping resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_authSip_auth_registrationsSip_auth_registrations_credential_list_mapping|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_authSip_auth_registrationsSip_auth_registrations_credential_list_mapping|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2264,7 +2264,7 @@ public isolated client class Client {
     # + domainSid - The SID of the SIP domain that contains the resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the CredentialListMapping resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/Domains/[string domainSid]/Auth/Registrations/CredentialListMappings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2281,7 +2281,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipCredentialResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipCredentialResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/CredentialLists/${getEncodedUri(credentialListSid)}/Credentials.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2293,7 +2293,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the Account that is responsible for this resource.
     # + credentialListSid - The unique id that identifies the credential list to include the created credential.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials\.json(CreateSipCredentialRequest payload) returns ApiV2010AccountSipSip_credential_listSip_credential|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials(CreateSipCredentialRequest payload) returns ApiV2010AccountSipSip_credential_listSip_credential|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/CredentialLists/${getEncodedUri(credentialListSid)}/Credentials.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2307,7 +2307,7 @@ public isolated client class Client {
     # + credentialListSid - The unique id that identifies the credential list that contains the desired credential.
     # + sid - The unique id that identifies the resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials/[string sidJson]() returns ApiV2010AccountSipSip_credential_listSip_credential|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials/[string sidJson]() returns ApiV2010AccountSipSip_credential_listSip_credential|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2322,7 +2322,7 @@ public isolated client class Client {
     # + credentialListSid - The unique id that identifies the credential list that includes this credential.
     # + sid - The unique id that identifies the resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials/[string sidJson](UpdateSipCredentialRequest payload) returns ApiV2010AccountSipSip_credential_listSip_credential|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials/[string sidJson](UpdateSipCredentialRequest payload) returns ApiV2010AccountSipSip_credential_listSip_credential|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2340,7 +2340,7 @@ public isolated client class Client {
     # + credentialListSid - The unique id that identifies the credential list that contains the desired credentials.
     # + sid - The unique id that identifies the resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/CredentialLists/[string credentialListSid]/Credentials/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2356,7 +2356,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipCredentialListResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/CredentialLists(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipCredentialListResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/CredentialLists.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2367,7 +2367,7 @@ public isolated client class Client {
     #
     # + accountSid - The unique id of the Account that is responsible for this resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists\.json(CreateSipCredentialListRequest payload) returns ApiV2010AccountSipSip_credential_list|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/CredentialLists(CreateSipCredentialListRequest payload) returns ApiV2010AccountSipSip_credential_list|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/CredentialLists.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2380,7 +2380,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the Account that is responsible for this resource.
     # + sid - The credential list Sid that uniquely identifies this resource
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string sidJson]() returns ApiV2010AccountSipSip_credential_list|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/CredentialLists/[string sidJson]() returns ApiV2010AccountSipSip_credential_list|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2394,7 +2394,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the Account that is responsible for this resource.
     # + sid - The credential list Sid that uniquely identifies this resource
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string sidJson](UpdateSipCredentialListRequest payload) returns ApiV2010AccountSipSip_credential_list|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/CredentialLists/[string sidJson](UpdateSipCredentialListRequest payload) returns ApiV2010AccountSipSip_credential_list|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2411,7 +2411,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the Account that is responsible for this resource.
     # + sid - The credential list Sid that uniquely identifies this resource
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/CredentialLists/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/CredentialLists/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2428,7 +2428,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipCredentialListMappingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipCredentialListMappingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/CredentialListMappings.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2440,7 +2440,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + domainSid - A 34 character string that uniquely identifies the SIP Domain for which the CredentialList resource will be mapped.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings\.json(CreateSipCredentialListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_credential_list_mapping|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings(CreateSipCredentialListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_credential_list_mapping|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/CredentialListMappings.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2454,7 +2454,7 @@ public isolated client class Client {
     # + domainSid - A 34 character string that uniquely identifies the SIP Domain that includes the resource to fetch.
     # + sid - A 34 character string that uniquely identifies the resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_credential_list_mapping|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_credential_list_mapping|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2469,7 +2469,7 @@ public isolated client class Client {
     # + domainSid - A 34 character string that uniquely identifies the SIP Domain that includes the resource to delete.
     # + sid - A 34 character string that uniquely identifies the resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/Domains/[string domainSid]/CredentialListMappings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2485,7 +2485,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipDomainResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipDomainResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2496,7 +2496,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains\.json(CreateSipDomainRequest payload) returns ApiV2010AccountSipSip_domain|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains(CreateSipDomainRequest payload) returns ApiV2010AccountSipSip_domain|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2509,7 +2509,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the SipDomain resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the SipDomain resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string sidJson]() returns ApiV2010AccountSipSip_domain|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string sidJson]() returns ApiV2010AccountSipSip_domain|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2523,7 +2523,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the SipDomain resource to update.
     # + sid - The Twilio-provided string that uniquely identifies the SipDomain resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string sidJson](UpdateSipDomainRequest payload) returns ApiV2010AccountSipSip_domain|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains/[string sidJson](UpdateSipDomainRequest payload) returns ApiV2010AccountSipSip_domain|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2540,7 +2540,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the SipDomain resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the SipDomain resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/Domains/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2556,7 +2556,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipIpAccessControlListResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/IpAccessControlLists(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipIpAccessControlListResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/IpAccessControlLists.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2567,7 +2567,7 @@ public isolated client class Client {
     #
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists\.json(CreateSipIpAccessControlListRequest payload) returns ApiV2010AccountSipSip_ip_access_control_list|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/IpAccessControlLists(CreateSipIpAccessControlListRequest payload) returns ApiV2010AccountSipSip_ip_access_control_list|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/IpAccessControlLists.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2580,7 +2580,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + sid - A 34 character string that uniquely identifies the resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string sidJson]() returns ApiV2010AccountSipSip_ip_access_control_list|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/IpAccessControlLists/[string sidJson]() returns ApiV2010AccountSipSip_ip_access_control_list|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2594,7 +2594,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + sid - A 34 character string that uniquely identifies the resource to udpate.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string sidJson](UpdateSipIpAccessControlListRequest payload) returns ApiV2010AccountSipSip_ip_access_control_list|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/IpAccessControlLists/[string sidJson](UpdateSipIpAccessControlListRequest payload) returns ApiV2010AccountSipSip_ip_access_control_list|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2611,7 +2611,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + sid - A 34 character string that uniquely identifies the resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/IpAccessControlLists/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2626,7 +2626,7 @@ public isolated client class Client {
     # + domainSid - A 34 character string that uniquely identifies the SIP domain.
     # + sid - A 34 character string that uniquely identifies the resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_ip_access_control_list_mapping|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings/[string sidJson]() returns ApiV2010AccountSipSip_domainSip_ip_access_control_list_mapping|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2641,7 +2641,7 @@ public isolated client class Client {
     # + domainSid - A 34 character string that uniquely identifies the SIP domain.
     # + sid - A 34 character string that uniquely identifies the resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2658,7 +2658,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipIpAccessControlListMappingResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipIpAccessControlListMappingResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/IpAccessControlListMappings.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2670,7 +2670,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the Account that is responsible for this resource.
     # + domainSid - A 34 character string that uniquely identifies the SIP domain.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings\.json(CreateSipIpAccessControlListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_ip_access_control_list_mapping|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/Domains/[string domainSid]/IpAccessControlListMappings(CreateSipIpAccessControlListMappingRequest payload) returns ApiV2010AccountSipSip_domainSip_ip_access_control_list_mapping|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/Domains/${getEncodedUri(domainSid)}/IpAccessControlListMappings.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2686,7 +2686,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipIpAddressResponse|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListSipIpAddressResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/IpAccessControlLists/${getEncodedUri(ipAccessControlListSid)}/IpAddresses.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2698,7 +2698,7 @@ public isolated client class Client {
     # + accountSid - The unique id of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this resource.
     # + ipAccessControlListSid - The IpAccessControlList Sid with which to associate the created IpAddress resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses\.json(CreateSipIpAddressRequest payload) returns ApiV2010AccountSipSip_ip_access_control_listSip_ip_address|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses(CreateSipIpAddressRequest payload) returns ApiV2010AccountSipSip_ip_access_control_listSip_ip_address|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/SIP/IpAccessControlLists/${getEncodedUri(ipAccessControlListSid)}/IpAddresses.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2712,7 +2712,7 @@ public isolated client class Client {
     # + ipAccessControlListSid - The IpAccessControlList Sid that identifies the IpAddress resources to fetch.
     # + sid - A 34 character string that uniquely identifies the IpAddress resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses/[string sidJson]() returns ApiV2010AccountSipSip_ip_access_control_listSip_ip_address|error {
+    resource isolated function get Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses/[string sidJson]() returns ApiV2010AccountSipSip_ip_access_control_listSip_ip_address|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2727,7 +2727,7 @@ public isolated client class Client {
     # + ipAccessControlListSid - The IpAccessControlList Sid that identifies the IpAddress resources to update.
     # + sid - A 34 character string that identifies the IpAddress resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses/[string sidJson](UpdateSipIpAddressRequest payload) returns ApiV2010AccountSipSip_ip_access_control_listSip_ip_address|error {
+    resource isolated function post Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses/[string sidJson](UpdateSipIpAddressRequest payload) returns ApiV2010AccountSipSip_ip_access_control_listSip_ip_address|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2745,7 +2745,7 @@ public isolated client class Client {
     # + ipAccessControlListSid - The IpAccessControlList Sid that identifies the IpAddress resources to delete.
     # + sid - A 34 character string that uniquely identifies the resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/SIP/IpAccessControlLists/[string ipAccessControlListSid]/IpAddresses/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2759,7 +2759,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created this Siprec resource.
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the Siprec resource is associated with.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Siprec\.json(CreateSiprecRequest payload) returns ApiV2010AccountCallSiprec|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Siprec(CreateSiprecRequest payload) returns ApiV2010AccountCallSiprec|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Siprec.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2773,7 +2773,7 @@ public isolated client class Client {
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the Siprec resource is associated with.
     # + sid - The SID of the Siprec resource, or the `name` used when creating the resource
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Siprec/[string sidJson](UpdateSiprecRequest payload) returns ApiV2010AccountCallSiprec|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Siprec/[string sidJson](UpdateSiprecRequest payload) returns ApiV2010AccountCallSiprec|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2790,7 +2790,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created this Stream resource.
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the Stream resource is associated with.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Streams\.json(CreateStreamRequest payload) returns ApiV2010AccountCallStream|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Streams(CreateStreamRequest payload) returns ApiV2010AccountCallStream|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/Streams.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2804,7 +2804,7 @@ public isolated client class Client {
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the Stream resource is associated with.
     # + sid - The SID of the Stream resource, or the `name` used when creating the resource
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/Streams/[string sidJson](UpdateStreamRequest payload) returns ApiV2010AccountCallStream|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/Streams/[string sidJson](UpdateStreamRequest payload) returns ApiV2010AccountCallStream|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2820,7 +2820,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Tokens\.json(CreateTokenRequest payload) returns Api_v2010_account_token|error {
+    resource isolated function post Accounts/[string accountSid]/Tokens(CreateTokenRequest payload) returns Api_v2010_account_token|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Tokens.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -2833,7 +2833,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Transcription resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the Transcription resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Transcriptions/[string sidJson]() returns ApiV2010AccountTranscription|error {
+    resource isolated function get Accounts/[string accountSid]/Transcriptions/[string sidJson]() returns ApiV2010AccountTranscription|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2847,7 +2847,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Transcription resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the Transcription resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Transcriptions/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Transcriptions/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -2863,7 +2863,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Transcriptions\.json(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListTranscriptionResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Transcriptions(int? pageSize = (), int? page = (), string? pageToken = ()) returns ListTranscriptionResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Transcriptions.json`;
         map<anydata> queryParam = {"PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2881,7 +2881,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records\.json(Usage_record_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records(Usage_record_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2898,7 +2898,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/AllTime\.json(Usage_record_all_time_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordAllTimeResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/AllTime(Usage_record_all_time_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordAllTimeResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/AllTime.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2915,7 +2915,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/Daily\.json(Usage_record_daily_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordDailyResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/Daily(Usage_record_daily_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordDailyResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/Daily.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2932,7 +2932,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/LastMonth\.json(Usage_record_last_month_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordLastMonthResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/LastMonth(Usage_record_last_month_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordLastMonthResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/LastMonth.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2949,7 +2949,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/Monthly\.json(Usage_record_monthly_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordMonthlyResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/Monthly(Usage_record_monthly_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordMonthlyResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/Monthly.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2966,7 +2966,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/ThisMonth\.json(Usage_record_this_month_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordThisMonthResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/ThisMonth(Usage_record_this_month_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordThisMonthResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/ThisMonth.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -2983,7 +2983,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/Today\.json(Usage_record_today_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordTodayResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/Today(Usage_record_today_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordTodayResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/Today.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -3000,7 +3000,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/Yearly\.json(Usage_record_yearly_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordYearlyResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/Yearly(Usage_record_yearly_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordYearlyResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/Yearly.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -3017,7 +3017,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Records/Yesterday\.json(Usage_record_yesterday_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordYesterdayResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Records/Yesterday(Usage_record_yesterday_enum_category? category = (), string? startDate = (), string? endDate = (), boolean? includeSubaccounts = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageRecordYesterdayResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Records/Yesterday.json`;
         map<anydata> queryParam = {"Category": category, "StartDate": startDate, "EndDate": endDate, "IncludeSubaccounts": includeSubaccounts, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -3029,7 +3029,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the UsageTrigger resource to fetch.
     # + sid - The Twilio-provided string that uniquely identifies the UsageTrigger resource to fetch.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Triggers/[string sidJson]() returns ApiV2010AccountUsageUsage_trigger|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Triggers/[string sidJson]() returns ApiV2010AccountUsageUsage_trigger|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -3043,7 +3043,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the UsageTrigger resources to update.
     # + sid - The Twilio-provided string that uniquely identifies the UsageTrigger resource to update.
     # + return - OK 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Usage/Triggers/[string sidJson](UpdateUsageTriggerRequest payload) returns ApiV2010AccountUsageUsage_trigger|error {
+    resource isolated function post Accounts/[string accountSid]/Usage/Triggers/[string sidJson](UpdateUsageTriggerRequest payload) returns ApiV2010AccountUsageUsage_trigger|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -3059,7 +3059,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the UsageTrigger resources to delete.
     # + sid - The Twilio-provided string that uniquely identifies the UsageTrigger resource to delete.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Usage/Triggers/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Usage/Triggers/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
@@ -3078,7 +3078,7 @@ public isolated client class Client {
     # + page - The page index. This value is simply for client state.
     # + pageToken - The page token. This is provided by the API.
     # + return - OK 
-    resource isolated function get '2010\-04\-01/Accounts/[string accountSid]/Usage/Triggers\.json(Usage_trigger_enum_recurring? recurring = (), Usage_trigger_enum_trigger_field? triggerBy = (), Usage_trigger_enum_usage_category? usageCategory = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageTriggerResponse|error {
+    resource isolated function get Accounts/[string accountSid]/Usage/Triggers(Usage_trigger_enum_recurring? recurring = (), Usage_trigger_enum_trigger_field? triggerBy = (), Usage_trigger_enum_usage_category? usageCategory = (), int? pageSize = (), int? page = (), string? pageToken = ()) returns ListUsageTriggerResponse|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Triggers.json`;
         map<anydata> queryParam = {"Recurring": recurring, "TriggerBy": triggerBy, "UsageCategory": usageCategory, "PageSize": pageSize, "Page": page, "PageToken": pageToken};
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
@@ -3089,7 +3089,7 @@ public isolated client class Client {
     #
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Usage/Triggers\.json(CreateUsageTriggerRequest payload) returns ApiV2010AccountUsageUsage_trigger|error {
+    resource isolated function post Accounts/[string accountSid]/Usage/Triggers(CreateUsageTriggerRequest payload) returns ApiV2010AccountUsageUsage_trigger|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Usage/Triggers.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -3102,7 +3102,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created User Defined Message.
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the User Defined Message is associated with.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/UserDefinedMessages\.json(CreateUserDefinedMessageRequest payload) returns ApiV2010AccountCallUser_defined_message|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/UserDefinedMessages(CreateUserDefinedMessageRequest payload) returns ApiV2010AccountCallUser_defined_message|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/UserDefinedMessages.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -3115,7 +3115,7 @@ public isolated client class Client {
     # + accountSid - The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that subscribed to the User Defined Messages.
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the User Defined Messages subscription is associated with. This refers to the Call SID that is producing the user defined messages.
     # + return - Created 
-    resource isolated function post '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/UserDefinedMessageSubscriptions\.json(CreateUserDefinedMessageSubscriptionRequest payload) returns ApiV2010AccountCallUser_defined_message_subscription|error {
+    resource isolated function post Accounts/[string accountSid]/Calls/[string callSid]/UserDefinedMessageSubscriptions(CreateUserDefinedMessageSubscriptionRequest payload) returns ApiV2010AccountCallUser_defined_message_subscription|error {
         string resourcePath = string `/2010-04-01/Accounts/${getEncodedUri(accountSid)}/Calls/${getEncodedUri(callSid)}/UserDefinedMessageSubscriptions.json`;
         http:Request request = new;
         string encodedRequestBody = createFormURLEncodedRequestBody(payload);
@@ -3129,7 +3129,7 @@ public isolated client class Client {
     # + callSid - The SID of the [Call](https://www.twilio.com/docs/voice/api/call-resource) the User Defined Message Subscription is associated with. This refers to the Call SID that is producing the User Defined Messages.
     # + sid - The SID that uniquely identifies this User Defined Message Subscription.
     # + return - The resource was deleted successfully. 
-    resource isolated function delete '2010\-04\-01/Accounts/[string accountSid]/Calls/[string callSid]/UserDefinedMessageSubscriptions/[string sidJson]() returns http:Response|error {
+    resource isolated function delete Accounts/[string accountSid]/Calls/[string callSid]/UserDefinedMessageSubscriptions/[string sidJson]() returns http:Response|error {
         if !sidJson.endsWith(".json") {
             return error("bad URL");
         }
